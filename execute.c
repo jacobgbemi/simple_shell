@@ -62,6 +62,8 @@ void execute(char *argv[], list_t *linkedlist_path)
 	char *abs_path;
 	int status;
 
+	execve(argv[0], argv, NULL);
+
 	abs_path = _which(argv[0], linkedlist_path);
 	if (!abs_path)
 	{
