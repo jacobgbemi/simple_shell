@@ -31,8 +31,9 @@ typedef struct builtin_commands
 
 
 /**
- * struct list - linked list for environmental variables
- * @var: holds environmental variable string
+ * struct env_path - linked list for environmental variables
+ * @str: holds environmental variable string
+ * @len: holds the length of the string
  * @next: points to next node
  */
 typedef struct env_path
@@ -76,7 +77,7 @@ char *_strcpy(char *dest, char *src);
 int _putchar(char c);
 void _puts(char *str);
 int _isnumber(int c);
-int _strlen( char *s);
+int _strlen(char *s);
 
 /* strtok */
 char *_strchr(char *s, char c);

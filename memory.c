@@ -44,7 +44,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 
 /**
- * c_exit - frees user's typed command and linked list before exiting
+ * __exit - frees user's typed command and linked list before exiting
  * @str: user's typed command
  * @env: input the linked list of envirnment
  */
