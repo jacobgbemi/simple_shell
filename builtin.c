@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
-  * is_builtin - checks if cmd is a builtin
+  * _builtin - checks if cmd is a builtin
   * @cmd: command to find
   * Return: On success - pointer to function, On Failure - NULL pointer
  (* other useful shell builtins:
@@ -34,7 +34,7 @@ int (*_builtin(char *cmd))()
 	return (NULL);
 }
 /**
-  * _exit_with_grace - Frees any remaining malloc'd spaces, and exits
+  * _exit_builtin - Frees any remaining malloc'd spaces, and exits
   * @linkedlist_path: Linked list to free.
   * @buffer: buffer to free
   * @tokens: Check for other inputs

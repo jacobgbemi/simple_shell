@@ -1,9 +1,15 @@
 #include "shell.h"
 
+/**
+ * _getenv - gets the environmental variable as user defines
+ * @name: name of environmental variable
+ * Return: environmental variable if sucessful, NULL otherwise
+*/
+
 char *_getenv(char *name)
 {
 	int index, len;
-	extern char **environ;
+	/*extern char **environ;*/
 
 	len = _strlen(name);
 	for (index = 0; environ[index]; index++)
@@ -18,10 +24,11 @@ char *_getenv(char *name)
 
 
 /**
-  * _setenv_usr - sets environmental variables as user defines
+  * _setenv - sets environmental variables as user defines
   * @tokens: KEY=VALUE pair
   * Return: 0 on success, -1 on failure
-  */
+*/
+
 int _setenv(char **tokens)
 {
 	int i, status, wc;
@@ -47,11 +54,12 @@ int _setenv(char **tokens)
 
 
 /**
-  * _env - prints out the current environment
+  * current_env - prints out the current environment
   * @tokens: tokenized strings
   * @environment: linked list environment
   * Return: 0 on success, -1 on catastrophic failure
-  */
+*/
+
 int current_env(char **tokens, list_t *environment)
 {
 	char **envir;
