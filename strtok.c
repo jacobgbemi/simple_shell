@@ -69,10 +69,11 @@ char *_strpbrk(char *s, char *delims)
 	return (s);
 }
 /**
- * _strtok_r - replicates strtok_r, a tokenizer
+ * _strtok- replicates strtok, a tokenizer
  * @s: string to be tokenized
  * @delim: delimiter that determines where we split s
- * @save_ptr: saves index in tokenized s so that repeated fn calls fetch tokens
+ * (@save_ptr: saves index in tokenized s so that repeated
+ * fn calls fetch tokens
  * Return: pointer to next token
  */
 char *_strtok(char *s, char *delim)
@@ -85,11 +86,11 @@ char *_strtok(char *s, char *delim)
 	s += _strspn(s, delim);
 	if (*s == '\0')
 		return (NULL);
-	
+
 	token = s;
 	s = _strpbrk(token, delim);
 	if (s != NULL)
 		*s = '\0';
-	
+
 	return (token);
 }

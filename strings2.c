@@ -1,5 +1,12 @@
 #include "shell.h"
 
+/**
+ * _strcpy - copies a string into another
+ * @dest: destination string
+ * @src: source string
+ * Return: destination string
+*/
+
 char *_strcpy(char *dest, char *src)
 {
 	int i;
@@ -31,13 +38,13 @@ int _strlen(char *s)
 }
 
 /**
- * _isdigit - checks if chars are digits
+ * _isnumber - checks if chars are digits
  * @c: char to check
  * Return: 1 if yes, 0 if no
  */
 int _isnumber(int c)
 {
-	if(c >= '0' && c <= '9')
+	if (c >= '0' && c <= '9')
 		return (1);
 	else
 		return (0);
