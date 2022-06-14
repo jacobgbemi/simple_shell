@@ -41,7 +41,7 @@ list_t *add_node(list_t **head, char *str, unsigned int len)
 	return (*head);
 }
 /**
-  * list_from_path - builds a linked list from PATH
+  * path_list - builds a linked list from PATH
   * Return: pointer to linked list
   */
 list_t *path_list(void)
@@ -59,7 +59,7 @@ list_t *path_list(void)
 	{
 		buffer[j++] = *env;
 		len++;
-		if(*env == ':')
+		if (*env == ':')
 		{
 			len--;
 			buffer[j - 1] = '/';
@@ -74,7 +74,7 @@ list_t *path_list(void)
 }
 
 /**
-  * environ_linked_list - builds a linked list from PATH
+  * environ_list - builds a linked list from PATH
   * Return: pointer to linked list
   */
 list_t *environ_list(void)
@@ -96,6 +96,12 @@ list_t *environ_list(void)
 
 
 
+/**
+ * _which - finds the path of a command
+ * @cmd: command
+ * @linkedlist_path: linked list from the PATH
+ * Return: absolute path if successful, NULL otherwise
+*/
 
 char *_which(char *cmd, list_t *linkedlist_path)
 {
@@ -142,6 +148,7 @@ char *_which(char *cmd, list_t *linkedlist_path)
 void free_list(list_t *head)
 {
 	list_t *holder;
+
 	while (head != NULL)
 	{
 		holder = head;
