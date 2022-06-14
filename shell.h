@@ -54,6 +54,7 @@ int _history(void);
 /* env_func.c */
 char *_getenv(char *name);
 int _setenv(char **tokens);
+int _unsetenv(char **tokens);
 int current_env(char **tokens, list_t *environment);
 
 /* linkedlist.c */

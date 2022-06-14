@@ -54,12 +54,41 @@ int _setenv(char **tokens)
 	return (-1);
 }
 
+/**
+  * _unsetenv - unsets environmental variables as user defines
+  * @tokens: KEY=VALUE pair
+  * Return: 0 on success, -1 on failure
+*/
+
+int _unsetenv(char **tokens)
+{
+	int i, status, wc;
+	char *key;
+
+	for (i = 0, wc = 1; tokens[1][i]; i++)
+		if (tokens[1][i] == '=')
+			wc++;
+	for (i = 0; tokens[i]; i++)
+		;
+	if (!tokens[1] || i == 0 || wc != 2)
+	{
+		_puts("unsetenv: Usage: unsetenv KEY=VALUE\n");
+		return (-1);
+	}
+	key = strtok(tokens[1], "=");
+	/*value = strtok(NULL, "=");*/
+	status = unsetenv(key);
+	if (status == 0)
+		return (status);
+	return (-1);
+}
+
 
 /**
   * current_env - prints out the current environment
   * @tokens: tokenized strings
   * @environment: linked list environment
-  * Return: 0 on success, -1 on catastrophic failure
+i  * Return: 0 on success, -1 on catastrophic failure
 */
 
 int current_env(char **tokens, list_t *environment)

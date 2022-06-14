@@ -21,6 +21,7 @@ int (*_builtin(char *cmd))()
 		{"exit", _exit_builtin},
 		{"history", _history},
 		{"setenv", _setenv},
+		{"unsetenv", _unsetenv},
 		{NULL, NULL}
 	};
 
