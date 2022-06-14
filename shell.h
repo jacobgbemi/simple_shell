@@ -78,7 +78,7 @@ void _puts(char *str);
 int _isnumber(int c);
 int _strlen( char *s);
 
-/* strtok */
+/* strtok.c */
 char *_strchr(char *s, char c);
 unsigned int _strspn(char *s, char *accept);
 char *_strpbrk(char *s, char *delims);
