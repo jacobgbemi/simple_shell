@@ -1,46 +1,56 @@
 #include "shell.h"
 
+/**
+ * split_line - splits the data from standard input
+ * @line: data from standard input
+ * Return: an array of pointers if successful
+*/
+
 char **split_line(char *line)
 {
-  int bufsize = 1024, position = 0;
-  char *delimeter =  " \t\r\n\a";
-  char **tokens = malloc(bufsize * sizeof(char*));
-  char *token;
-  char *s = malloc(bufsize * sizeof(char));
+	int bufsize = 1024, position = 0;
+	char *delimeter =  " \t\r\n\a";
+	char **tokens = malloc(bufsize * sizeof(char *));
+	char *token;
+	char *s = malloc(bufsize * sizeof(char));
 
-  _strcpy(s,line);
+	_strcpy(s, line);
 
-  if (!tokens) {
-    perror("allocation error");
-    exit(1);
-  }
+	if (!tokens)
+	{
+		perror("allocation error");
+		exit(1);
+	}
 
-  token = strtok(s, delimeter);
-  /*free(s);*/
-  while (token != NULL) {
-    tokens[position] = token;
-    position++;
+	token = strtok(s, delimeter);
+	/*free(s);*/
+	while (token != NULL)
+	{
+		tokens[position] = token;
+		position++;
 
-    if (position >= bufsize) {
-      bufsize += 1024;
-      tokens = _realloc(*tokens, token[position], bufsize * sizeof(char*));
-      if (!tokens) {
-        perror("allocation error");
-        exit(1);
-      }
-    }
+		if (position >= bufsize)
+		{
+			bufsize += 1024;
+			tokens = _realloc(*tokens, token[position], bufsize * sizeof(char *));
+			if (!tokens)
+			{
+				perror("allocation error");
+				exit(1);
+			}
+		}
 
-    token = strtok(NULL, delimeter);
-    /*free(tokens);*/
-    /*free_double_ptr(tokens);*/
-  }
-  tokens[position] = NULL;
-  return (tokens);
+		token = strtok(NULL, delimeter);
+		/*free(tokens);*/
+		/*free_double_ptr(tokens);*/
+	}
+	tokens[position] = NULL;
+	return (tokens);
 }
 
 
 /**
-  * executor - executes a command
+  * execute - executes a command
  (* by searching through PATH
   * @argv: array of tokens, ie. argument vectors
   * @linkedlist_path: PATH in LL form
@@ -63,22 +73,20 @@ void execute(char *argv[], list_t *linkedlist_path)
 	if (child_pid == -1)
 	{
 		perror("Error:");
-                exit (1);
-        }
-        if (child_pid == 0)
-        {
+		exit(1);
+	}
+	if (child_pid == 0)
+	{
 		if (execve(abs_path, argv, environ) == -1)
 		{
 			perror("execution failed\n");
 			__exit(argv, linkedlist_path);
 		}
-		
-        }
-        else
+
+	}
+	else
 	{
 		wait(&status);
-		
-        }
-
+	}
 }
 
