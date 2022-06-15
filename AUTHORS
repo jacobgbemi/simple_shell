@@ -1,2 +1,5 @@
-#!/bin/bash
-git shortlog -e -s -n
+# This file lists all individuals having contributed content to the repository.
+# For how it is generated, see `hack/generate-authors.sh`.
+
+Gbemi Jacob Adebayo <adebayogbemi90@gmail.com>
+Elo Agbawe Idiodi <eloagbawe@gmail.com>
