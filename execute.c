@@ -53,10 +53,11 @@ char **split_line(char *line)
   * execute - executes a command
  (* by searching through PATH
   * @argv: array of tokens, ie. argument vectors
+  * @av: cmd argument list
   * @linkedlist_path: PATH in LL form
   * Return: 0 on success, -1 on failure
   */
-void execute(char *argv[], list_t *linkedlist_path)
+void execute(char *argv[], list_t *linkedlist_path, char **av)
 {
 	pid_t child_pid;
 	char *abs_path;
@@ -65,30 +66,32 @@ void execute(char *argv[], list_t *linkedlist_path)
 	execve(argv[0], argv, NULL);
 
 	abs_path = _which(argv[0], linkedlist_path);
+
 	if (!abs_path)
 	{
-		perror("command not found\n");
+		perror(av[0]);
 		return;
-	}
-
-	child_pid = fork();
-	if (child_pid == -1)
-	{
-		perror("Error:");
-		exit(1);
-	}
-	if (child_pid == 0)
-	{
-		if (execve(abs_path, argv, environ) == -1)
-		{
-			perror("execution failed\n");
-			__exit(argv, linkedlist_path);
-		}
-
 	}
 	else
 	{
-		wait(&status);
+		child_pid = fork();
+		if (child_pid == -1)
+		{
+			perror("Error:");
+			exit(1);
+		}
+		if (child_pid == 0)
+		{
+			if (execve(abs_path, argv, environ) == -1)
+			{
+				perror("execution failed\n");
+				__exit(argv, linkedlist_path);
+			}
+		}
+		else
+		{
+			wait(&status);
+		}
 	}
 }
 

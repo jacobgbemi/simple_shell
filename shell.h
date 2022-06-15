@@ -65,7 +65,7 @@ char *_which(char *cmd, list_t *linkedlist_path);
 void free_list(list_t *head);
 
 /* execute.c */
-void execute(char *argv[], list_t *linkedlist_path);
+void execute(char *argv[], list_t *linkedlist_path, char **av);
 char **split_line(char *line);
 
 /* memory.c */
