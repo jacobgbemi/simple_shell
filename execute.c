@@ -53,6 +53,7 @@ char **split_line(char *line)
   * execute - executes a command
  (* by searching through PATH
   * @argv: array of tokens, ie. argument vectors
+  * @av: cmd argument list
   * @linkedlist_path: PATH in LL form
   * Return: 0 on success, -1 on failure
   */
@@ -78,6 +79,25 @@ int execute(char *argv[], list_t *linkedlist_path)
 	else
 	{
 		child_pid = fork();
+		if (child_pid == 0)
+		{
+
+
+	abs_path = _which(argv[0], linkedlist_path);
+
+	if (!abs_path)
+	{
+		perror(av[0]);
+		return;
+	}
+	else
+	{
+		child_pid = fork();
+		if (child_pid == -1)
+		{
+			perror("Error:");
+			exit(1);
+		}
 		if (child_pid == 0)
 		{
 			if (execve(abs_path, argv, environ) == -1)
@@ -124,5 +144,6 @@ void ctrl_D(int i, char *command, list_t *env)
 		if (isatty(STDIN_FILENO))/* ctrl+d prints newline */
 			write(STDOUT_FILENO, "\n", 1);
 		exit(0);
+
 	}
 }
