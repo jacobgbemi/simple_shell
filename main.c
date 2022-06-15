@@ -7,28 +7,21 @@
  * Return: 0 if successful
 */
 
-int main(int ac __attribute__((unused)), char **av)
+int main(void)
+	
 {
 	char *buffer, **commands;
 	list_t *linkedlist_path, *env_list;
 	int characters;
 	size_t bufsize = BUFSIZE;
-
-	if (ac >= 2)
-	{
-		if (execve(av[1], av, NULL) == -1)
-		{
-			perror(av[0]);
-			exit(-1);
-		}
-		return (0);
-	}
+	
 	buffer = (char *)malloc(bufsize * sizeof(char));
 	if (buffer == NULL)
 	{
 		perror("Unable to allocate buffer");
 		exit(1);
 	}
+	
 	linkedlist_path = path_list();
 	env_list = environ_list();
 	while (1)
@@ -46,7 +39,7 @@ int main(int ac __attribute__((unused)), char **av)
 		if (_builtin(commands[0]))
 			_builtin(commands[0])(commands, linkedlist_path, buffer);
 		else
-			execute(commands, linkedlist_path, av);
+			execute(commands, linkedlist_path);
 		free(commands);
 	}
 

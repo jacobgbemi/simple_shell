@@ -65,11 +65,7 @@ char *_which(char *cmd, list_t *linkedlist_path);
 void free_list(list_t *head);
 
 /* execute.c */
-<<<<<<< HEAD
 int execute(char *argv[], list_t *linkedlist_path);
-=======
-void execute(char *argv[], list_t *linkedlist_path, char **av);
->>>>>>> 781642aa739b4292b3c3288f83813a46bce07998
 char **split_line(char *line);
 void ctrl_D(int i, char *cammand, list_t *env);
 void ctrl_c(int n);
